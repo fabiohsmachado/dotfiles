@@ -42,19 +42,22 @@ values."
      git
      ;; markdown
      (org :variables
-          org-agenda-files '("~/Dropbox/docs/org/gtd/gtd.org"
-                             "~/Dropbox/docs/org/gtd/inbox.org"
-                             "~/Dropbox/docs/org/gtd/tickler.org")
-          org-refile-targets '((nil :maxlevel . 3)
-                               ("~/Dropbox/docs/org/gtd/gtd.org" :maxlevel . 2)
-                               ("~/Dropbox/docs/org/gtd/someday.org" :level . 1)
-                               ("~/Dropbox/docs/org/gtd/tickler.org" :maxlevel . 1)))
-          org-capture-templates '(("t" "Todo [inbox]" entry
-                                   (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Tasks")
-                                   "* TODO %i%?")
-                                  ("T" "Tickler" entry
-                                   (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
-                                   "* %i%? \n %U"))
+          org-agenda-files
+           '("~/Dropbox/docs/org/gtd/gtd.org"
+             "~/Dropbox/docs/org/gtd/inbox.org"
+             "~/Dropbox/docs/org/gtd/tickler.org")
+          org-refile-targets
+           '((nil :maxlevel . 3)
+             ("~/Dropbox/docs/org/gtd/gtd.org" :maxlevel . 2)
+             ("~/Dropbox/docs/org/gtd/someday.org" :level . 1)
+             ("~/Dropbox/docs/org/gtd/tickler.org" :maxlevel . 1))
+          org-capture-templates
+           '(("t" "Todo [inbox]" entry
+              (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Tasks")
+              "* TODO %i%?")
+             ("T" "Tickler" entry
+              (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
+              "* %i%? \n %U")))
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
