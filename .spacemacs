@@ -36,11 +36,9 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      helm
-     ;; auto-completion
-     ;; better-defaults
-     emacs-lisp
-     git
-     ;; markdown
+     ibuffer
+     (spell-checking :variables
+                     enable-flyspell-auto-completion t)
      (org :variables
           org-agenda-files
            '("~/Dropbox/docs/org/gtd/gtd.org"
@@ -58,12 +56,16 @@ values."
              ("T" "Tickler" entry
               (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
               "* %i%? \n %U")))
+     git
+     semantic
+     emacs-lisp
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
      ;; version-control
+     ;; syntax-checking
+     ;; auto-completion
+     ;; markdown
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
