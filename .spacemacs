@@ -63,6 +63,9 @@ values."
            '(("t" "Todo [inbox]" entry
               (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Tasks")
               "* TODO %i%?")
+             ("i" "Idea [inbox]" entry
+               (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Ideas")
+               "* %i%?")
              ("T" "Tickler" entry
               (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
               "* %i%? \n %U")))
