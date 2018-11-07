@@ -38,17 +38,21 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; Emacs
      helm
      ibuffer
+     ;; DevOps
      git
      version-control
      semantic
+     ;; Editing
      syntax-checking
      (spell-checking :variables
                      enable-flyspell-auto-completion t)
      (auto-completion :variable
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
+     ;; Org
      (org :variables
           org-agenda-files
            '("~/Dropbox/docs/org/gtd/gtd.org"
@@ -69,6 +73,7 @@ values."
              ("T" "Tickler" entry
               (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
               "* %i%? \n %U")))
+     ;; Languages
      emacs-lisp
      html
      javascript
@@ -76,6 +81,7 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ;; markdown
+     ;; Fluffy
      emoji
     )
    ;; List of additional packages that will be installed without being
