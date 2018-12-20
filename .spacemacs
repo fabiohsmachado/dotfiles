@@ -57,23 +57,23 @@ values."
      ;; Org
      (org :variables
           org-agenda-files
-           '("~/Dropbox/docs/org/gtd/gtd.org"
-             "~/Dropbox/docs/org/gtd/inbox.org"
-             "~/Dropbox/docs/org/gtd/tickler.org")
+             '((concat personal-gtd "gtd.org")
+               (concat personal-gtd "inbox.org")
+               (concat personal-gtd "tickler.org"))
           org-refile-targets
            '((nil :maxlevel . 3)
-             ("~/Dropbox/docs/org/gtd/gtd.org" :maxlevel . 2)
-             ("~/Dropbox/docs/org/gtd/someday.org" :level . 1)
-             ("~/Dropbox/docs/org/gtd/tickler.org" :maxlevel . 1))
+             ((concat personal-gtd "gtd.org") :maxlevel . 2)
+             ((concat personal-gtd "someday.org") :level . 1)
+             ((concat personal-gtd "tickler.org") :maxlevel . 1))
           org-capture-templates
            '(("t" "Todo [inbox]" entry
-              (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Tasks")
+              (file+headline (concat personal-gtd "inbox.org") "Tasks")
               "* TODO %i%?")
              ("i" "Idea [inbox]" entry
-               (file+headline "~/Dropbox/docs/org/gtd/inbox.org" "Ideas")
+               (file+headline (concat personal-gtd "inbox.org") "Ideas")
                "* %i%?")
              ("T" "Tickler" entry
-              (file+headline "~/Dropbox/docs/org/gtd/tickler.org" "Tickler")
+              (file+headline (concat personal-gtd "tickler.org") "Tickler")
               "* %i%? \n %U")))
      ;; Languages
      emacs-lisp
@@ -339,6 +339,9 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (setq personal-root "~/Dropbox/")
+  (setq personal-org (concat personal-root "docs/org/"))
+  (setq personal-gtd (concat personal-org "gtd/"))
   )
 
 (defun dotspacemacs/user-config ()
