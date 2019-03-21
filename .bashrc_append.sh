@@ -13,7 +13,7 @@ function parse_git_branch() {
 	if [ ! "${BRANCH}" == "" ]
 	then
 		STAT=`parse_git_dirty`
-		echo "[${BRANCH}${STAT}] "
+		echo "[${BRANCH}${STAT}]"
 	else
 		echo ""
 	fi
@@ -67,4 +67,4 @@ function virtualenv_info(){
     [[ -n "$venv" ]] && echo "[$venv] "
 }
 
-export PS1="\[\e[1;32m\]\`parse_git_branch\`\[\e[m\]\[\e[1;33m\]\`virtualenv_info\`\[\e[m\]\[\e[1;34m\]\w\[\e[m\] \\$ "
+export PS1="\[\e[1;32m\]\`parse_git_branch\` \[\e[m\]\[\e[1;33m\]\`virtualenv_info\`\[\e[m\]\[\e[1;34m\]\w\[\e[m\] \\$ "
