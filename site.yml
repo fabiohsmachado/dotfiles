@@ -1,7 +1,9 @@
 ---
 - name: Setup
-  hosts: localhost
   become: fabio
+  hosts: all
+  vars:
+    dotfiles_dir: "{{ ansible_env.HOME }}/dev/dotfiles"
 
   tasks:
     - name: Install apt packages
@@ -32,4 +34,30 @@
     - name: Go get sqlfmt
       become: yes
       shell: go get -u github.com/jackc/sqlfmt/...
+
+    - name: Git clone dotfiles repository
+      tags:
+      - run
+      git:
+        repo: https://github.com/fabiohsmachado/dotfiles.git
+        dest: "{{ dotfiles_dir }}"
+
+    - name: Link dotfiles files to home directory
+      file:
+        src: "{{ dotfiles_dir }}/{{ item }}"
+        dest: "{{ ansible_env.HOME }}/{{ item }}"
+        state: link
+      with_items:
+        - .bashrc_append.sh
+        - .bash_profile_append.sh
+        - .spacemacs
+
+    - name: Source append files in original dotfiles
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/{{ item }}"
+        line: source {{ansible_env.HOME }}/{{ item }}_append.sh
+        create: yes
+      with_items:
+        - .bashrc
+        - .bash_profile
 ...
