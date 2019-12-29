@@ -18,6 +18,7 @@
           - golang-go
           - global
           - docker
+          - emacs
 
     - name: Install tern
       become: yes
@@ -35,9 +36,18 @@
       become: yes
       shell: go get -u github.com/jackc/sqlfmt/...
 
+    - name: Install virtualenwrapper
+      pip:
+        name:
+          - virtualenvwrapper
+        executable: pip3
+
+    - name: Git clone pyenv repository
+      git:
+        repo: https://github.com/pyenv/pyenv.git
+        dest: "{{ ansible_env.HOME }}/.pyenv"
+
     - name: Git clone dotfiles repository
-      tags:
-      - run
       git:
         repo: https://github.com/fabiohsmachado/dotfiles.git
         dest: "{{ dotfiles_dir }}"

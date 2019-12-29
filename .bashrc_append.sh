@@ -5,11 +5,6 @@
 #### Source Bash Profile ####
 source ~/.bash_profile
 
-#### Python ####
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
 # Virtual Env Wrapper
 source $HOME/.local/bin/virtualenvwrapper.sh
 
