@@ -7,19 +7,24 @@
     fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts/adobe-fonts/source-code-pro"
 
   tasks:
+    - name: Add Emacs PPA for latest version
+      become: yes
+      apt_repository:
+        repo: ppa:kelleyk/emacs
+
     - name: Install apt packages
       become: yes
       apt:
         pkg:
+          - docker
+          - emacs26
           - git
+          - global
+          - golang-go
+          - npm
           - python3
           - python3-pip
-          - npm
           - ruby
-          - golang-go
-          - global
-          - docker
-          - emacs
 
     - name: Install tern
       become: yes
@@ -80,4 +85,10 @@
       with_items:
         - .bashrc
         - .bash_profile
+
+    - name: Install Spacemacs
+      git:
+        repo: https://github.com/syl20bnr/spacemacs
+        dest: "{{ ansible_env.HOME }}/.emacs.d"
+        version: develop
 ...
