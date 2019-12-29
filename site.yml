@@ -4,6 +4,7 @@
   hosts: all
   vars:
     dotfiles_dir: "{{ ansible_env.HOME }}/dev/dotfiles"
+    fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts/adobe-fonts/source-code-pro"
 
   tasks:
     - name: Install apt packages
@@ -35,6 +36,15 @@
     - name: Go get sqlfmt
       become: yes
       shell: go get -u github.com/jackc/sqlfmt/...
+
+    - name: Clone Source Code Pro fonts
+      git:
+        repo: https://github.com/adobe-fonts/source-code-pro
+        dest: "{{ fonts_dir }}"
+        depth: 1
+
+    - name: Install Source Code Pro fonts
+      command: fc-cache -f -v {{ fonts_dir }}
 
     - name: Install virtualenwrapper
       pip:
