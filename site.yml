@@ -1,0 +1,35 @@
+---
+- name: Setup
+  hosts: localhost
+  become: fabio
+
+  tasks:
+    - name: Install apt packages
+      become: yes
+      apt:
+        pkg:
+          - git
+          - python3
+          - python3-pip
+          - npm
+          - ruby
+          - golang-go
+          - global
+          - docker
+
+    - name: Install tern
+      become: yes
+      npm:
+        name: tern
+        global: yes
+
+    - name: Install intelephense
+      become: yes
+      npm:
+        name: intelephense
+        global: yes
+
+    - name: Go get sqlfmt
+      become: yes
+      shell: go get -u github.com/jackc/sqlfmt/...
+...
