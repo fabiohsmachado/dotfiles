@@ -57,7 +57,9 @@ This function should only modify configuration layer settings."
           org-refile-use-outline-path t
           org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)")
                               (sequence "CODE(c)" "BLOCK(b)" "REVIEW(r)" "|" "FINISHED(f)"))
-          org-confirm-babel-evaluate nil)
+          org-confirm-babel-evaluate nil
+          org-enforce-todo-checkbox-dependencies t
+          org-enforce-todo-dependencies t)
 
      (shell :variables
             shell-default-height 30
