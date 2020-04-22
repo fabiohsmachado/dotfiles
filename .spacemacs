@@ -73,6 +73,7 @@ This function should only modify configuration layer settings."
              csharp-backend 'omnisharp)
 
      (python :variables
+             python-backend 'lsp
              python-enable-yapf-format-on-save t
              python-auto-set-local-pyenv-version 'on-project-switch)
 
@@ -543,6 +544,9 @@ before packages are loaded."
   (spacemacs/declare-prefix-for-mode 'php-mode "o" "custom")
   (spacemacs/set-leader-keys-for-major-mode 'php-mode "otr" 'phpunit-current-class)
   (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
+
+  ;; Python Specific
+  (add-hook 'python-mode-hook 'lsp)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
