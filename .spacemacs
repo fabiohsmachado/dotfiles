@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
 
      (org :variables
           org-outline-path-complete-in-steps nil
+          org-refile-targets (quote ((nil :maxlevel . 2)))
           org-refile-use-outline-path t
           org-todo-keywords '((sequence "TODO(t)" "WAIT(w)" "|" "DONE(d)")
                               (sequence "CODE(c)" "BLOCK(b)" "REVIEW(r)" "|" "FINISHED(f)"))
