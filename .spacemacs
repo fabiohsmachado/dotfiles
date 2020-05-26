@@ -34,18 +34,18 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      ;; Emacs
+     dap
+     git
+     gtags
      helm
      ibuffer
-     treemacs
+     imenu-list
      lsp
-     dap
-     gtags
      multiple-cursors
-     git
-     version-control
-     semantic
-     syntax-checking
      spell-checking
+     syntax-checking
+     treemacs
+     version-control
 
      (auto-completion :variables
                       auto-completion-enable-snippets-in-popup t
