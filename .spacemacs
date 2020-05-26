@@ -76,6 +76,7 @@ This function should only modify configuration layer settings."
 
      (python :variables
              python-backend 'lsp
+             flycheck-pylintrc 'pylintrc
              python-enable-yapf-format-on-save t
              python-auto-set-local-pyenv-version 'on-project-switch)
 
