@@ -5,9 +5,6 @@
 #### Source Bash Profile ####
 source ~/.bash_profile
 
-# Virtual Env Wrapper
-source $HOME/.local/bin/virtualenvwrapper.sh
-
 #### Custom PS1 ####
 # get current branch in git repo
 function parse_git_branch() {
@@ -69,4 +66,4 @@ function virtualenv_info(){
     [[ -n "$venv" ]] && echo "[$venv] "
 }
 
-export PS1="\[\e[1;32m\]\`parse_git_branch\` \[\e[m\]\[\e[1;33m\]\`virtualenv_info\`\[\e[m\]\[\e[1;34m\]\w\[\e[m\] \\$ "
+export PS1="\[\e[1;32m\]\`parse_git_branch\` \[\e[m\]\[\e[1;34m\]\w\[\e[m\] \\$ "

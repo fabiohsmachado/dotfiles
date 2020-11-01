@@ -40,7 +40,7 @@ This function should only modify configuration layer settings."
      helm
      ibuffer
      imenu-list
-     lsp
+
      multiple-cursors
      spell-checking
      syntax-checking
@@ -75,10 +75,10 @@ This function should only modify configuration layer settings."
              csharp-backend 'omnisharp)
 
      (python :variables
+             flycheck-checker 'python-pylint
+             python-pipenv-activate t
              python-backend 'lsp
-             flycheck-pylintrc 'pylintrc
-             python-enable-yapf-format-on-save t
-             python-auto-set-local-pyenv-version 'on-project-switch)
+             python-lsp-server 'mspyls)
 
      (sql :variables
           sql-capitalize-keywords t)
@@ -551,6 +551,8 @@ before packages are loaded."
 
   ;; Python Specific
   (add-hook 'python-mode-hook 'lsp)
+
+  (setq lsp-diagnostic-package :none)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

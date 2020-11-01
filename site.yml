@@ -5,14 +5,15 @@
   # Virtualbox
   # Vagrant
   # Homestead
+  # PHP
   # Laravel
 
 - name: Setup
   become: fabio
   hosts: all
   vars:
-    dotfiles_dir: "{{ ansible_env.HOME }}/dev/dotfiles"
-    fonts_dir: "{{ ansible_env.HOME }}/.local/share/fonts/adobe-fonts/source-code-pro"
+    dotfiles_dir: "/home/fabio/dev/dotfiles"
+    fonts_dir: "/home/fabio/.local/share/fonts/adobe-fonts/source-code-pro"
     go_get:
     - name: sqlfmt
       url: github.com/jackc/sqlfmt/
@@ -30,16 +31,37 @@
         pkg:
           - docker
           - emacs26
-          - git
+	  - git-flow
           - global
           - golang-go
           - npm
-          - python3
-          - python3-pip
-          - pylint
+	  - pandoc
           - ruby
           - vagrant
           - virtualbox
+
+    - name: Install Python build dependencies
+      become: yes
+      apt:
+        install-recommends: false
+        pkg:
+          - make
+          - build-essential
+          - libssl-dev
+          - zlib1g-dev
+          - libbz2-dev
+          - libreadline-dev
+          - libsqlite3-dev
+          - wget
+          - curl
+          - llvm
+          - libncurses5-dev
+          - xz-utils
+          - tk-dev
+          - libxml2-dev
+          - libxmlsec1-dev
+          - libffi-dev
+          - liblzma-dev
 
     - name: Install tern
       become: yes
@@ -47,10 +69,16 @@
         name: tern
         global: yes
 
-    - name: Install intelephense
+    - name: Install vmd
       become: yes
       npm:
-        name: intelephense
+        name: vmd
+        global: yes
+
+    - name: Install electron
+      become: yes
+      npm:
+        name: electron
         global: yes
 
     - name: Clone Source Code Pro fonts
@@ -62,26 +90,15 @@
     - name: Install Source Code Pro fonts
       command: fc-cache -f -v {{ fonts_dir }}
 
-    - name: Install virtualenvwrapper
-      pip:
-        name:
-          - virtualenvwrapper
-        executable: pip3
-
     - name: Git clone pyenv repository
       git:
         repo: https://github.com/pyenv/pyenv.git
-        dest: "{{ ansible_env.HOME }}/.pyenv"
-
-    - name: Git clone dotfiles repository
-      git:
-        repo: https://github.com/fabiohsmachado/dotfiles.git
-        dest: "{{ dotfiles_dir }}"
+        dest: "/home/fabio/.pyenv"
 
     - name: Link dotfiles files to home directory
       file:
         src: "{{ dotfiles_dir }}/{{ item }}"
-        dest: "{{ ansible_env.HOME }}/{{ item }}"
+        dest: "/home/fabio/{{ item }}"
         state: link
       with_items:
         - .bashrc_append.sh
@@ -90,8 +107,8 @@
 
     - name: Source append files in original dotfiles
       lineinfile:
-        path: "{{ ansible_env.HOME }}/{{ item }}"
-        line: source {{ansible_env.HOME }}/{{ item }}_append.sh
+        path: "/home/fabio/{{ item }}"
+        line: source /home/fabio/{{ item }}_append.sh
         create: yes
       with_items:
         - .bashrc
@@ -100,6 +117,6 @@
     - name: Install Spacemacs
       git:
         repo: https://github.com/syl20bnr/spacemacs
-        dest: "{{ ansible_env.HOME }}/.emacs.d"
+        dest: "/home/fabio/.emacs.d"
         version: develop
 ...
